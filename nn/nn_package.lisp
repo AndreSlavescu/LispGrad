@@ -12,7 +12,12 @@
     #:tensor-mul 
     #:tensor-div
     #:tensor-land
+    #:tensor-lior
+    #:tensor-lxor
     
     ;; mat_mul
     #:transpose
-    #:mat-mul))
+    #:mat-mul
+    
+    ;; conv
+    #:conv-2d))
