@@ -1,15 +1,5 @@
-(load "../tensor.lisp")
+(load "nn_package.lisp")
 
-(defpackage :lispgrad/nn
-  (:nicknames :lispgrad.nn)
-  (:use :common-lisp :lispgrad)
-  (:export 
-    ;; binary ops
-    #:tensor-add 
-    #:tensor-sub 
-    #:tensor-mul 
-    #:tensor-div
-    #:tensor-land))
 
 (in-package :lispgrad/nn)
 
@@ -86,3 +76,33 @@
 (defun tensor-land (t1 t2)
   (assert (equal (tensor-shape t1) (tensor-shape t2)) ())
   (make-tensor (tensor-op #'logand t1 t2) (tensor-shape t1)))
+
+
+;; description:
+;;  (tensor-lior (t1 t2)): Computes the logical inclusive OR of two tensors.
+;; requires:
+;;  t1: valid tensor
+;;  t2: valid tensor
+;;  t1 shape is equal to t2 shape
+;; returns:
+;;  A tensor that is the computed logical inclusive OR of t1 and t2
+;; example:
+;;  (tensor-lior '(1 2) '(2 3)) ; returns '(3 3)
+(defun tensor-lior (t1 t2)
+  (assert (equal (tensor-shape t1) (tensor-shape t2)) ())
+  (make-tensor (tensor-op #'logior t1 t2) (tensor-shape t1)))
+
+
+;; description:
+;;  (tensor-lxor (t1 t2)): Computes the logical exclusive OR of two tensors.
+;; requires:
+;;  t1: valid tensor
+;;  t2: valid tensor
+;;  t1 shape is equal to t2 shape
+;; returns:
+;;  A tensor that is the computed logical exclusive OR of t1 and t2
+;; example:
+;;  (tensor-lxor '(1 2) '(2 3)) ; returns '(3 1)
+(defun tensor-lxor (t1 t2)
+  (assert (equal (tensor-shape t1) (tensor-shape t2)) ())
+  (make-tensor (tensor-op #'logxor t1 t2) (tensor-shape t1)))
