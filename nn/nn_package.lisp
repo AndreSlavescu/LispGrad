@@ -1,5 +1,7 @@
+;; Load Packages
 (load "../tensor.lisp")
 
+;; nn package
 (defpackage :lispgrad/nn
   (:nicknames :lispgrad.nn)
   (:use :common-lisp :lispgrad)

@@ -1,9 +1,21 @@
+;; Load Packages
 (load "nn_package.lisp")
 
 (in-package :lispgrad/nn)
 
-(defun transpose (lst)
-  (apply #'mapcar #'list lst))
+
+;; description:
+;;  (transpose (t1)): Transposes the tensor
+;; requires:
+;;  t1: valid tensor
+;; returns:
+;;  A tensor that is the transpose of t1
+;; example:
+;;  (transpose '((1 2) (3 4))) ; returns '((1 3) (2 4))
+(defun transpose (t1)
+  (make-tensor 
+    (apply #'mapcar #'list (tensor-data t1)) 
+    (tensor-shape t1)))
 
 ;; description:
 ;;  (mat-mul (t1 t2)): Performs matrix multiplication of two tensors.
@@ -17,7 +29,7 @@
 ;;  (mat-mul '((1 2) (3 4)) '((1 2) (1 2))) ; returns '((3 6) (7 14))
 (defun mat-mul (t1 t2)
   (let* ((data1 (tensor-data t1))
-         (data2 (transpose (tensor-data t2))) 
+         (data2 (tensor-data (transpose t2))) 
          (shape1 (tensor-shape t1))
          (shape2 (tensor-shape t2))
          (n (first shape1)) 

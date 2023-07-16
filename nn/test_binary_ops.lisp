@@ -1,6 +1,8 @@
+;; Load Packages
 (load "binary_ops.lisp")
 
 (in-package :lispgrad/nn)
+
 
 ;; tests
 (defparameter *t1* (make-tensor '((1 2) (3 4)) '(2 2)))

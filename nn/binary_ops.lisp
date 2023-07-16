@@ -1,7 +1,8 @@
+;; Load Packages
 (load "nn_package.lisp")
 
-
 (in-package :lispgrad/nn)
+
 
 ;; description:
 ;;  (tensor-add (t1 t2)): Computes the sum of two tensors.
