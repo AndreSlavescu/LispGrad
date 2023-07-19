@@ -15,9 +15,15 @@
     #:tensor-lior
     #:tensor-lxor
     
+    ;; non-linear activations
+    #:clip
+
     ;; mat_mul
     #:transpose
     #:mat-mul
     
     ;; conv
-    #:conv-2d))
+    #:conv-2d
+    
+    ;; pool
+    #:avg-pool-2d))
