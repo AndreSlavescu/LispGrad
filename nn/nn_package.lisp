@@ -16,7 +16,11 @@
     #:tensor-lxor
     
     ;; non-linear activations
+    #:relu
+    #:relu6
+    #:celu
     #:clip
+    #:hard-tanh
 
     ;; mat_mul
     #:transpose
