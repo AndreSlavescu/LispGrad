@@ -3,6 +3,8 @@
 
 (in-package :lispgrad/nn)
 
+;; non-linear activation functions
+;; implementations derived from: https://pytorch.org/docs/stable/nn.functional.html
 
 ;; description:
 ;;  (relu (t1)): Computes the Rectified Linear Unit activation function on a tensor.
@@ -73,3 +75,16 @@
 (defun hard-tanh (t1 min-val max-val)
   (assert (<= min-val max-val))
   (clip t1 min-val max-val))
+
+
+;; description:
+;;  (leaky-relu (t1 alpha)): Applies the Leaky Rectified Linear Unit activation function on a tensor.
+;; requires:
+;;  t1: valid tensor
+;;  alpha: a small positive number (typically 0.01)
+;; returns:
+;;  A tensor with the same shape as the input, where each element is the Leaky ReLU applied on the input element.
+;; example:
+;;  (leaky-relu '((1 -2 3) (-4 5 -6)) 0.01) ; returns '((1 -0.02 3) (-0.04 5 -0.06))
+(defun leaky-relu (t1 alpha)
+  (make-tensor (mapcar #'(lambda (x) (if (> x 0) x (* alpha x))) (tensor-data t1)) (tensor-shape t1)))
