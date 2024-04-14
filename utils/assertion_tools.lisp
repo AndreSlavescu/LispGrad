@@ -2,6 +2,7 @@
 (load (merge-pathnames "../config.lisp" *load-truename*))
 (in-package :lispgrad/utils)
 (load (merge-pathnames "utils_package.lisp" *utils-dir*))
+(use-package 'utils_package)
 
 
 ;; assert-close function definition

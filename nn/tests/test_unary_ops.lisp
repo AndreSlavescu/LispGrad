@@ -1,9 +1,13 @@
 ;; Load Packages
 (load (merge-pathnames "../../config.lisp" *load-truename*))
 (in-package :lispgrad/nn)
+(load (merge-pathnames "nn_package.lisp" *nn-dir*))
+(use-package 'nn_package)
 (load (merge-pathnames "unary_ops.lisp" *nn-dir*))
 
 (in-package :lispgrad/utils)
+(load (merge-pathnames "utils_package.lisp" *utils-dir*))
+(use-package 'utils_package)
 (load (merge-pathnames "assertion_tools.lisp" *utils-dir*))
 
 

@@ -2,8 +2,9 @@
 
 ;; Load Packages
 (load (merge-pathnames "../config.lisp" *load-truename*))
-(in-package :lispgrad/utils)
+(in-package :lispgrad/nn)
 (load (merge-pathnames "nn_package.lisp" *nn-dir*))
+(use-package 'nn_package)
 
 
 ;; description:

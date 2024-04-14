@@ -1,5 +1,6 @@
 ;; Load Packages
-(load "../tensor.lisp")
+(load (merge-pathnames "../config.lisp" *load-truename*))
+(load (merge-pathnames "tensor.lisp" *base-dir*))
 
 ;; nn package
 (defpackage :lispgrad/nn
