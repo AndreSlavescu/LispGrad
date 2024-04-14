@@ -1,7 +1,9 @@
-;; Load Packages
-(load "nn_package.lisp")
+;; matrix_ops.lisp
 
-(in-package :lispgrad/nn)
+;; Load Packages
+(load (merge-pathnames "../config.lisp" *load-truename*))
+(in-package :lispgrad/utils)
+(load (merge-pathnames "nn_package.lisp" *nn-dir*))
 
 
 ;; description:

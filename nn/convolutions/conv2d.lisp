@@ -31,4 +31,3 @@
                     (* (nth (+ i k) (nth (+ j l) t1-data)) 
                        (nth k (nth l kernel-data))))))))
       (make-tensor res (list n m)))))
-

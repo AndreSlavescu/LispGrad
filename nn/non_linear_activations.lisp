@@ -1,7 +1,11 @@
-;; Load Packages
-(load "nn_package.lisp")
+;; non_linear_activations.lisp
 
-(in-package :lispgrad/nn)
+;; Load Packages
+(load (merge-pathnames "../config.lisp" *load-truename*))
+(in-package :lispgrad/utils)
+(load (merge-pathnames "nn_package.lisp" *nn-dir*))
+(ql:quickload "special-functions")
+
 
 ;; non-linear activation functions
 ;; implementations derived from: https://pytorch.org/docs/stable/nn.functional.html
@@ -25,8 +29,8 @@
 ;; returns:
 ;;  A tensor with the same shape as the input, where each element is the ReLU applied on the input element with asympotote at y = 6.
 ;; example:
-;;  (relu '((-1 2 -3) (4 -5 7))) ; returns '((0 2 0) (4 0 6))
-(defun relu-6 (t1)
+;;  (relu6 '((-1 2 -3) (4 -5 7))) ; returns '((0 2 0) (4 0 6))
+(defun relu6 (t1)
   (make-tensor (mapcar #'(lambda (x) (min 6 (max 0 x))) (tensor-data t1)) (tensor-shape t1)))
 
 
@@ -88,3 +92,39 @@
 ;;  (leaky-relu '((1 -2 3) (-4 5 -6)) 0.01) ; returns '((1 -0.02 3) (-0.04 5 -0.06))
 (defun leaky-relu (t1 alpha)
   (make-tensor (mapcar #'(lambda (x) (if (> x 0) x (* alpha x))) (tensor-data t1)) (tensor-shape t1)))
+
+
+;; description:
+;;  (gelu (t1)): Applies the Gaussian Error Linear Unit activation function on a tensor.
+;; requires:
+;;  t1: valid tensor
+;; returns:
+;;  A tensor with the same shape as the input, where each element is the GELU applied on the input element.
+;; example:
+;;  (gelu '((-1 0 1) (2 3 4))) ; approximate results '((-0.1588 0 0.8412) (1.9546 2.9963 3.9993))
+(defun gelu (t1)
+  (make-tensor (mapcar #'(lambda (x) (* x 0.5 (+ 1 (special-functions:erf (/ (coerce x 'double-float) (sqrt 2.0)))))) (tensor-data t1)) (tensor-shape t1)))
+
+
+;; description:
+;;  (tanh-activation (t1)): Applies the hyperbolic tangent activation function on a tensor.
+;; requires:
+;;  t1: valid tensor
+;; returns:
+;;  A tensor with the same shape as the input, where each element is the tanh applied on the input element.
+;; example:
+;;  (tanh-activation '((-1 0 1) (2 3 4))) ; returns '((0.7616 0 0.7616) (0.9640 0.9951 0.9993))
+(defun tanh-activation (t1)
+  (make-tensor (mapcar #'tanh (tensor-data t1)) (tensor-shape t1)))
+
+
+;; description:
+;;  (sigmoid (t1)): Applies the sigmoid activation function on a tensor.
+;; requires:
+;;  t1: valid tensor
+;; returns:
+;;  A tensor with the same shape as the input, where each element is the sigmoid applied on the input element.
+;; example:
+;;  (sigmoid '((-1 0 1) (2 3 4))) ; returns '((0.2689 0.5 0.7311) (0.8808 0.9526 0.9820))
+(defun sigmoid (t1)
+  (make-tensor (mapcar #'(lambda (x) (/ 1 (+ 1 (exp (- x))))) (tensor-data t1)) (tensor-shape t1)))

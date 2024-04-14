@@ -6,6 +6,12 @@
   (:nicknames :lispgrad.nn)
   (:use :common-lisp :lispgrad)
   (:export 
+    ;; unary ops
+    #:tensor-neg
+    #:tensor-abs
+    #:tensor-exp
+    #:tensor-log
+
     ;; binary ops
     #:tensor-add 
     #:tensor-sub 
@@ -21,8 +27,11 @@
     #:celu
     #:clip
     #:hard-tanh
+    #:gelu
+    #:tanh-activation
+    #:sigmoid
 
-    ;; mat_mul
+    ;; matrix ops
     #:transpose
     #:mat-mul
     
@@ -30,4 +39,9 @@
     #:conv-2d
     
     ;; pool
-    #:avg-pool-2d))
+    #:avg-pool-2d
+    
+    ;; attention
+    #:scaled-dot-product-attention
+    ))
+  

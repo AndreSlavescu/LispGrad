@@ -42,13 +42,3 @@
     (let* ((final-data res)
            (final-shape (list n m)))
       (make-tensor final-data final-shape))))
-
-
-
-
-
-
-
-
-
-
