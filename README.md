@@ -21,3 +21,4 @@ make ql
 - General Tensor Class
 - Non-linear Activation Functions
 - Convolution + Matrix Multiplication
+- Full test suite for NN ops
